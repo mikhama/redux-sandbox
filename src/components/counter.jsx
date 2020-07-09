@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { connect } from 'react-redux';
 
 const Counter = ({
   counter,
@@ -33,4 +34,8 @@ const Counter = ({
   </div>
 );
 
-export default Counter;
+const mapStateToProps = (state) => ({
+  counter: state,
+});
+
+export default connect(mapStateToProps)(Counter);
