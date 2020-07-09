@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.css';
+
 import { createStore } from 'redux';
 
 const reducer = (state = 0, action) => {
@@ -5,15 +7,32 @@ const reducer = (state = 0, action) => {
     case 'INC': {
       return state + 1;
     }
+    case 'DEC': {
+      return state - 1;
+    }
     default:
       return state;
   }
 };
 
 const store = createStore(reducer);
-store.subscribe(() => {
-  console.log(store.getState());
-});
 
-store.dispatch({ type: 'INC' });
-store.dispatch({ type: 'INC' });
+const update = () => {
+  document
+    .getElementById('counter')
+    .innerHTML = store.getState();
+};
+
+store.subscribe(update);
+
+document
+  .getElementById('inc')
+  .addEventListener('click', () => {
+    store.dispatch({ type: 'INC' });
+  });
+
+document
+  .getElementById('dec')
+  .addEventListener('click', () => {
+    store.dispatch({ type: 'DEC' });
+  });
