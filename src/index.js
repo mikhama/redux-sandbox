@@ -1,3 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.css';
+const reducer = (state = 0, action) => {
+  switch (action.type) {
+    case 'INC': {
+      return state + 1;
+    }
+    default:
+      return state;
+  }
+};
 
-console.log('hello');
+let state = reducer(undefined, {});
+
+state = reducer(state, { type: 'INC' });
+console.log(state);
+state = reducer(state, { type: 'INC' });
+console.log(state);
